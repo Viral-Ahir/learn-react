@@ -1,11 +1,15 @@
 import { ItemProps } from "@/types/item";
 
-function Item({ name, isPacked } : ItemProps) {
-  return (
-    <li className="item">
-      {name}
-    </li>
-  );
+function Item({ name, isPacked }: ItemProps) {
+  if (isPacked) {
+    return (
+      <li className="item">
+        <del>{name}</del>
+      </li>
+    );
+  } else {
+    return <li className="item">{name}</li>;
+  }
 }
 
 export default function PackingList() {
@@ -13,18 +17,9 @@ export default function PackingList() {
     <section>
       <h1>My Packing List</h1>
       <ul>
-        <Item
-          isPacked={true}
-          name="Laptop"
-        />
-        <Item
-          isPacked={true}
-          name="Chargers"
-        />
-        <Item
-          isPacked={false}
-          name="Socks"
-        />
+        <Item isPacked={true} name="Laptop" />
+        <Item isPacked={true} name="Chargers" />
+        <Item isPacked={false} name="Socks" />
       </ul>
     </section>
   );
